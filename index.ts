@@ -3,8 +3,8 @@ import fs from "fs";
 import axios from "axios";
 import { gql, GraphQLClient } from "graphql-request";
 
-const OMNIVORE_API_URL =
-  process.env.OMNIVORE_API_URL ?? "https://api-prod.omnivore.app/api/graphql";
+const API_URL =
+  process.env.API_URL ?? "https://api-prod.omnivore.app/api/graphql";
 
 // https://github.com/omnivore-app/omnivore/blob/main/packages/api/src/schema.ts
 const uploadImportFileMutation = gql`
@@ -24,16 +24,16 @@ const uploadImportFileMutation = gql`
 `;
 
 async function main() {
-  console.log("Connecting to ", OMNIVORE_API_URL);
-  if (!process.env.OMNIVORE_API_TOKEN) {
+  console.log("Connecting to ", API_URL);
+  if (!process.env.API_KEY) {
     throw new Error(
       "No auth token found. Did you forget to add it to the .env file?"
     );
   }
 
-  const client = new GraphQLClient(OMNIVORE_API_URL, {
+  const client = new GraphQLClient(API_URL, {
     headers: {
-      Authorization: process.env.OMNIVORE_API_TOKEN,
+      Authorization: process.env.API_KEY,
     },
   });
 

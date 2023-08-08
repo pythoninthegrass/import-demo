@@ -1,3 +1,8 @@
+# ETC
+**/*.bak
+import.csv
+shiori_backup_*
+
 # Logs
 logs
 *.log
